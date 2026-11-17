@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XMAS PEPE — O memecoin mais natalino da blockchain</title>
+<meta name="description" content="XMAS PEPE ($XPEPE): o sapo que trouxe o Natal para a blockchain. Comunidade, memes e muita neve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#04110c; --pine:#0a2618; --pine2:#103a25;
+  --green:#4cd964; --green-d:#2a9d48; --red:#e63946; --red-d:#b3202c;
+  --gold:#ffd166; --snow:#f4fff8; --muted:#a9c9b6;
+  --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
+  --display:'Lilita One','Trebuchet MS',system-ui,sans-serif;
+  --body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);color:var(--snow);line-height:1.6;overflow-x:hidden;
+  background:
+    radial-gradient(1200px 700px at 80% -10%,rgba(230,57,70,.22),transparent 60%),
+    radial-gradient(1000px 700px at 0% 20%,rgba(76,217,100,.16),transparent 60%),
+    linear-gradient(180deg,var(--night),var(--pine) 45%,var(--night));
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+section{padding:96px 0;position:relative}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.5px;line-height:1.05}
+h2{font-size:clamp(2rem,5vw,3.4rem);text-align:center;margin-bottom:14px}
+h2 span{color:var(--gold)}
+.lead{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 52px;font-size:1.1rem}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(4,17,12,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{font-family:var(--display);font-size:1.5rem;display:flex;align-items:center;gap:10px}
+.logo i{font-style:normal;display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
+.logo b{font-weight:400;color:var(--red)}
+.links{display:flex;gap:26px;font-weight:700;font-size:.95rem}
+.links a{opacity:.8;transition:.2s}
+.links a:hover{opacity:1;color:var(--gold)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-size:1.05rem;
+  padding:13px 26px;border-radius:999px;border:0;cursor:pointer;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--red),var(--red-d));box-shadow:0 6px 0 #7d141d,0 14px 30px rgba(230,57,70,.35);
+  transition:transform .15s,box-shadow .15s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 #7d141d,0 20px 36px rgba(230,57,70,.45)}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #7d141d}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.2s infinite}
+.btn.green{background:linear-gradient(180deg,var(--green),var(--green-d));box-shadow:0 6px 0 #1b6b30,0 14px 30px rgba(76,217,100,.3);color:#062310}
+.btn.green:hover{box-shadow:0 9px 0 #1b6b30,0 20px 36px rgba(76,217,100,.4)}
+.btn.sm{padding:9px 18px;font-size:.95rem}
+
+/* ---------- LUZES ---------- */
+.lights{display:flex;justify-content:space-around;height:34px;position:relative;margin-top:-2px;overflow:hidden}
+.lights::before{content:"";position:absolute;left:-2%;right:-2%;top:-14px;height:24px;border-bottom:2px solid #1d4a31;border-radius:0 0 50% 50%}
+.lights span{width:12px;height:18px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;margin-top:9px;animation:twinkle 1.6s ease-in-out infinite;background:var(--c);box-shadow:0 0 14px 3px var(--c)}
+.lights span:nth-child(4n+1){--c:#ff4d5a}
+.lights span:nth-child(4n+2){--c:#ffd166;animation-delay:.4s}
+.lights span:nth-child(4n+3){--c:#4cd964;animation-delay:.8s}
+.lights span:nth-child(4n){--c:#5ac8fa;animation-delay:1.2s}
+
+/* ---------- HERO ---------- */
+.hero{padding:56px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:800;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(76,217,100,.7);animation:pulse 1.6s infinite}
+h1{font-size:clamp(3.4rem,10vw,7rem);text-shadow:0 6px 0 rgba(0,0,0,.35)}
+h1 .x{display:block;background:linear-gradient(90deg,#fff,var(--gold),#fff,var(--red),#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 6s linear infinite;text-shadow:none;filter:drop-shadow(0 6px 0 rgba(0,0,0,.35))}
+h1 .p{display:block;color:var(--green)}
+h1 .p em{font-style:normal;display:inline-block;animation:bounce 1.8s ease-in-out infinite}
+h1 .p em:nth-child(2){animation-delay:.12s}h1 .p em:nth-child(3){animation-delay:.24s}h1 .p em:nth-child(4){animation-delay:.36s}
+.hero p.sub{font-size:1.2rem;color:var(--muted);max-width:520px;margin:22px 0 30px}
+.hero p.sub b{color:var(--snow)}
+.cta{display:flex;gap:16px;flex-wrap:wrap}
+.contract{margin-top:30px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:10px 10px 10px 16px;max-width:520px}
+.contract small{color:var(--gold);font-weight:800;letter-spacing:1px}
+.contract code{flex:1;font-family:ui-monospace,Consolas,monospace;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.contract button{border:0;border-radius:10px;padding:8px 14px;font-weight:800;cursor:pointer;background:var(--gold);color:#3a2a00;font-family:var(--body);transition:.15s}
+.contract button:hover{transform:scale(1.06)}
+
+.stage{position:relative;aspect-ratio:1;max-width:520px;margin-inline:auto;width:100%}
+.glow{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(255,209,102,.35),rgba(76,217,100,.18) 45%,transparent 70%);animation:breathe 4s ease-in-out infinite}
+.ring{position:absolute;inset:4%;border-radius:50%;border:2px dashed rgba(255,255,255,.18);animation:spin 30s linear infinite}
+.ring.r2{inset:14%;animation-duration:22s;animation-direction:reverse;border-color:rgba(255,209,102,.25)}
+.orbit{position:absolute;inset:0;animation:spin 16s linear infinite}
+.orbit.o2{animation-duration:24s;animation-direction:reverse}
+.orbit span{position:absolute;inset:var(--in,0%);text-align:center;font-size:2.2rem;line-height:1;transform:rotate(var(--a));filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.orbit.o2 span{--in:11%;font-size:1.8rem}
+.mascot{position:absolute;inset:12% 10% 6%;animation:float 4.5s ease-in-out infinite;transition:transform .2s ease-out;cursor:pointer}
+.mascot svg{width:100%;height:100%;filter:drop-shadow(0 24px 26px rgba(0,0,0,.45))}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4.2s infinite}
+.arm{transform-box:fill-box;transform-origin:20% 20%;animation:wave 1.6s ease-in-out infinite}
+.coin{transform-box:fill-box;transform-origin:center;animation:coinflip 3s ease-in-out infinite}
+.pom{transform-box:fill-box;transform-origin:center;animation:wiggle 2s ease-in-out infinite}
+
+/* ---------- TICKER ---------- */
+.ticker{background:var(--red);border-block:4px solid #fff;transform:rotate(-1.2deg) scale(1.03);overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.ticker.alt{background:var(--green-d);transform:rotate(1.2deg) scale(1.03)}
+.track{display:flex;width:max-content;animation:marquee 26s linear infinite;font-family:var(--display);font-size:1.5rem;padding:12px 0;white-space:nowrap}
+.ticker.alt .track{animation-direction:reverse}
+.track span{padding:0 22px}
+
+/* ---------- COUNTDOWN ---------- */
+.count{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.count div{width:140px;padding:22px 8px;border-radius:24px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid var(--line);position:relative;overflow:hidden}
+.count div::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:repeating-linear-gradient(45deg,var(--red) 0 12px,#fff 12px 24px);animation:candy 1.2s linear infinite;background-size:34px 100%}
+.count b{display:block;font-family:var(--display);font-weight:400;font-size:3.4rem;color:var(--gold);line-height:1.1}
+.count b.tick{animation:pop .4s}
+.count small{text-transform:uppercase;letter-spacing:2px;font-weight:800;color:var(--muted);font-size:.75rem}
+
+/* ---------- CARDS ---------- */
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px;transition:transform .25s,border-color .25s,box-shadow .25s;transform-style:preserve-3d;position:relative;overflow:hidden}
+.card:hover{border-color:var(--gold);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.card .ico{font-size:3rem;display:inline-block;margin-bottom:12px;animation:float 3.6s ease-in-out infinite}
+.card:nth-child(2) .ico{animation-delay:.5s}.card:nth-child(3) .ico{animation-delay:1s}.card:nth-child(4) .ico{animation-delay:1.5s}
+.card h3{font-size:1.5rem;margin-bottom:8px}
+.card p{color:var(--muted)}
+.num{position:absolute;right:18px;top:8px;font-family:var(--display);font-size:4.5rem;color:rgba(255,255,255,.07)}
+
+/* ---------- TOKENOMICS ---------- */
+.stats{margin-bottom:34px}
+.stat{text-align:center}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--gold)}
+.stat small{color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:.78rem}
+.bars{display:grid;gap:18px;max-width:780px;margin-inline:auto}
+.bar label{display:flex;justify-content:space-between;font-weight:800;margin-bottom:6px}
+.bar i{display:block;height:22px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid var(--line)}
+.bar i u{display:block;height:100%;width:0;border-radius:999px;background:repeating-linear-gradient(45deg,var(--c1) 0 14px,var(--c2) 14px 28px);background-size:40px 100%;transition:width 1.6s cubic-bezier(.2,.8,.2,1);animation:candy 1.4s linear infinite}
+.in .bar i u{width:var(--w)}
+
+/* ---------- ROADMAP ---------- */
+.road{max-width:780px;margin-inline:auto;position:relative;padding-left:44px}
+.road::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:4px;border-radius:4px;background:repeating-linear-gradient(180deg,var(--red) 0 14px,#fff 14px 28px)}
+.step{position:relative;margin-bottom:22px}
+.step::before{content:"❄";position:absolute;left:-46px;top:22px;width:34px;height:34px;border-radius:50%;background:var(--pine2);border:2px solid var(--gold);display:grid;place-items:center;font-size:1rem;animation:spin 8s linear infinite}
+.step h3 small{font-family:var(--body);font-weight:800;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+
+/* ---------- COMUNIDADE ---------- */
+.join{text-align:center;border-radius:36px;padding:64px 24px;background:linear-gradient(135deg,rgba(230,57,70,.3),rgba(76,217,100,.22));border:1px solid var(--line);position:relative;overflow:hidden}
+.join .big{font-size:5rem;display:inline-block;animation:bounce 1.6s ease-in-out infinite}
+.social{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+footer p{max-width:760px;margin:10px auto 0}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(40px) scale(.97);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.pop-emoji{position:fixed;pointer-events:none;z-index:60;font-size:1.8rem;animation:fly 1s ease-out forwards}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,120px);background:var(--gold);color:#3a2a00;font-weight:800;padding:12px 22px;border-radius:999px;z-index:70;transition:transform .35s;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.toast.on{transform:translate(-50%,0)}
+
+@keyframes float{50%{translate:0 -18px}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes wiggle{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes shine{0%,60%{left:-80%}100%{left:140%}}
+@keyframes slide{to{background-position:-300% 0}}
+@keyframes pulse{to{box-shadow:0 0 0 12px rgba(76,217,100,0)}}
+@keyframes breathe{50%{transform:scale(1.12);opacity:.75}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes candy{to{background-position:34px 0}}
+@keyframes pop{50%{transform:scale(1.25)}}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+@keyframes wave{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(14deg)}}
+@keyframes coinflip{0%,100%{transform:scaleX(1)}50%{transform:scaleX(-1)}}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(var(--rot));opacity:0}}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .hero p.sub,.contract{margin-inline:auto}
+  .cta{justify-content:center}
+  .stage{order:-1;max-width:360px}
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .links{display:none}
+  section{padding:72px 0}
+}
+@media (max-width:560px){
+  .g3,.g4{grid-template-columns:1fr}
+  .count div{width:calc(50% - 8px)}
+  .track{font-size:1.2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .bar i u{width:var(--w)}
+}
+</style>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<nav>
+  <div class="wrap">
+    <a href="#topo" class="logo"><i>🎄</i> XMAS <b>PEPE</b></a>
+    <div class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#comprar">Como comprar</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#comunidade">Comunidade</a>
+    </div>
+    <a class="btn sm" data-link="buy" href="#comprar">Comprar $XPEPE</a>
+  </div>
+</nav>
+<div class="lights" aria-hidden="true" id="lights"></div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="topo">
+  <div class="wrap">
+    <div>
+      <div class="badge rv">Ho ho ho · temporada aberta</div>
+      <h1 class="rv" style="--d:.1s">
+        <span class="x">XMAS</span>
+        <span class="p"><em>P</em><em>E</em><em>P</em><em>E</em></span>
+      </h1>
+      <p class="sub rv" style="--d:.2s">O sapo mais natalino da blockchain chegou de trenó. <b>$XPEPE</b> é o memecoin feito de comunidade, memes e muita neve — sem promessas, só espírito de Natal.</p>
+      <div class="cta rv" style="--d:.3s">
+        <a class="btn" data-link="buy" href="#comprar">🎁 Comprar agora</a>
+        <a class="btn green" data-link="chart" href="#tokenomics">📈 Ver gráfico</a>
+      </div>
+      <div class="contract rv" style="--d:.4s">
+        <small>CA</small>
+        <code id="ca"></code>
+        <button id="copy" type="button">Copiar</button>
+      </div>
+    </div>
+
+    <div class="stage rv" style="--d:.2s">
+      <div class="glow"></div>
+      <div class="ring"></div><div class="ring r2"></div>
+      <div class="orbit">
+        <span style="--a:0deg">🎁</span><span style="--a:90deg">❄️</span><span style="--a:180deg">🪙</span><span style="--a:270deg">⭐</span>
+      </div>
+      <div class="orbit o2">
+        <span style="--a:45deg;--r:-36%">🍬</span><span style="--a:165deg;--r:-36%">🔔</span><span style="--a:285deg;--r:-36%">🎄</span>
+      </div>
+      <div class="mascot" id="mascot" title="Clique em mim!">
+        <!-- Mascote original: sapo natalino -->
+        <svg viewBox="0 0 400 440" role="img" aria-label="Mascote do XMAS PEPE: um sapo verde com gorro de Papai Noel segurando uma moeda">
+          <ellipse cx="200" cy="350" rx="112" ry="82" fill="#3fbf58"/>
+          <ellipse cx="200" cy="362" rx="72" ry="56" fill="#c9f5b8"/>
+          <ellipse cx="130" cy="425" rx="42" ry="14" fill="#2a9d48"/>
+          <ellipse cx="270" cy="425" rx="42" ry="14" fill="#2a9d48"/>
+          <ellipse cx="92" cy="340" rx="22" ry="40" fill="#3fbf58" transform="rotate(18 92 340)"/>
+          <g class="arm">
+            <ellipse cx="305" cy="330" rx="22" ry="40" fill="#3fbf58" transform="rotate(-28 305 330)"/>
+            <g class="coin">
+              <circle cx="335" cy="290" r="38" fill="#ffd166" stroke="#c98a00" stroke-width="6"/>
+              <text x="335" y="302" text-anchor="middle" font-family="Lilita One,Trebuchet MS,sans-serif" font-size="30" fill="#8a5a00">XP</text>
+            </g>
+          </g>
+          <ellipse cx="200" cy="225" rx="132" ry="100" fill="#4cd964"/>
+          <circle cx="145" cy="150" r="46" fill="#4cd964"/>
+          <circle cx="255" cy="150" r="46" fill="#4cd964"/>
+          <g class="eye">
+            <circle cx="145" cy="152" r="34" fill="#fff"/>
+            <circle cx="151" cy="156" r="16" fill="#12261a"/>
+            <circle cx="157" cy="149" r="6" fill="#fff"/>
+          </g>
+          <g class="eye">
+            <circle cx="255" cy="152" r="34" fill="#fff"/>
+            <circle cx="261" cy="156" r="16" fill="#12261a"/>
+            <circle cx="267" cy="149" r="6" fill="#fff"/>
+          </g>
+          <circle cx="100" cy="250" r="17" fill="#ff8fa3" opacity=".6"/>
+          <circle cx="300" cy="250" r="17" fill="#ff8fa3" opacity=".6"/>
+          <path d="M128 248 Q200 316 272 248" fill="none" stroke="#12261a" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="188" cy="222" r="4" fill="#2a9d48"/><circle cx="212" cy="222" r="4" fill="#2a9d48"/>
+          <!-- cachecol -->
+          <rect x="104" y="306" width="192" height="28" rx="14" fill="#e63946"/>
+          <rect x="150" y="320" width="30" height="62" rx="10" fill="#e63946"/>
+          <rect x="150" y="364" width="30" height="8" fill="#fff"/>
+          <!-- gorro -->
+          <path d="M108 104 C126 22 232 -6 300 30 C328 44 342 66 338 96 C316 66 292 66 290 104 Z" fill="#e63946"/>
+          <rect x="98" y="88" width="204" height="32" rx="16" fill="#fff" transform="rotate(-3 200 104)"/>
+          <circle class="pom" cx="340" cy="100" r="20" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="t1"></div></div>
+
+<!-- ================= COUNTDOWN ================= -->
+<section id="natal">
+  <div class="wrap">
+    <h2 class="rv">Contagem regressiva para o <span>Natal</span></h2>
+    <p class="lead rv">O trenó já saiu do Polo Norte. Falta pouco para a noite mais verde do ano.</p>
+    <div class="count rv">
+      <div><b id="cd">00</b><small>Dias</small></div>
+      <div><b id="ch">00</b><small>Horas</small></div>
+      <div><b id="cm">00</b><small>Minutos</small></div>
+      <div><b id="cs">00</b><small>Segundos</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section id="sobre">
+  <div class="wrap">
+    <h2 class="rv">Por que <span>XMAS PEPE</span>?</h2>
+    <p class="lead rv">Porque todo mundo merece um presente debaixo da árvore — nem que seja um meme.</p>
+    <div class="grid g3">
+      <div class="card tilt rv"><span class="ico">🐸</span><h3>100% meme</h3><p>Nascido da cultura da internet. Sem utilidade inventada, sem papo furado: é diversão pura, com gorro de Papai Noel.</p></div>
+      <div class="card tilt rv" style="--d:.12s"><span class="ico">🎅</span><h3>Feito pela comunidade</h3><p>Quem manda aqui são os duendes. Memes, artes, ideias e decisões saem direto da nossa oficina.</p></div>
+      <div class="card tilt rv" style="--d:.24s"><span class="ico">❄️</span><h3>Espírito natalino</h3><p>Sorteios, eventos temáticos e surpresas de fim de ano para quem estiver com a gente na ceia.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker alt" aria-hidden="true"><div class="track" id="t2"></div></div>
+
+<!-- ================= TOKENOMICS ================= -->
+<section id="tokenomics">
+  <div class="wrap">
+    <h2 class="rv">Token<span>omics</span></h2>
+    <p class="lead rv">Simples como carta para o Papai Noel.</p>
+    <div class="grid g4 stats">
+      <div class="card stat rv"><b data-count="1000000000" data-fmt="compact">0</b><small>Supply total</small></div>
+      <div class="card stat rv" style="--d:.1s"><b data-count="0" data-suffix="%">0%</b><small>Taxa de compra</small></div>
+      <div class="card stat rv" style="--d:.2s"><b data-count="0" data-suffix="%">0%</b><small>Taxa de venda</small></div>
+      <div class="card stat rv" style="--d:.3s"><b data-count="100" data-suffix="%">0%</b><small>Diversão</small></div>
+    </div>
+    <div class="bars rv">
+      <div class="bar"><label><span>🎁 Liquidez</span><span>80%</span></label><i><u style="--w:80%;--c1:#4cd964;--c2:#2a9d48"></u></i></div>
+      <div class="bar"><label><span>🎄 Comunidade e airdrops</span><span>10%</span></label><i><u style="--w:10%;--c1:#e63946;--c2:#fff"></u></i></div>
+      <div class="bar"><label><span>📣 Marketing</span><span>7%</span></label><i><u style="--w:7%;--c1:#ffd166;--c2:#f4a300"></u></i></div>
+      <div class="bar"><label><span>🧝 Equipe</span><span>3%</span></label><i><u style="--w:3%;--c1:#5ac8fa;--c2:#fff"></u></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO COMPRAR ================= -->
+<section id="comprar">
+  <div class="wrap">
+    <h2 class="rv">Como <span>comprar</span></h2>
+    <p class="lead rv">Quatro passos e você já está no trenó.</p>
+    <div class="grid g4">
+      <div class="card tilt rv"><span class="num">1</span><span class="ico">👛</span><h3>Crie sua carteira</h3><p>Instale uma carteira cripto de sua confiança no celular ou navegador.</p></div>
+      <div class="card tilt rv" style="--d:.1s"><span class="num">2</span><span class="ico">💰</span><h3>Adicione saldo</h3><p>Deposite a moeda nativa da rede para trocar e pagar as taxas.</p></div>
+      <div class="card tilt rv" style="--d:.2s"><span class="num">3</span><span class="ico">🔗</span><h3>Vá até a DEX</h3><p>Conecte a carteira e cole o contrato oficial do $XPEPE. Confira sempre o endereço.</p></div>
+      <div class="card tilt rv" style="--d:.3s"><span class="num">4</span><span class="ico">🎉</span><h3>Troque e pronto</h3><p>Faça o swap, guarde seus $XPEPE e venha comemorar com a comunidade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section id="roadmap">
+  <div class="wrap">
+    <h2 class="rv">Road<span>map</span></h2>
+    <p class="lead rv">A rota do trenó, parada por parada.</p>
+    <div class="road">
+      <div class="step card rv"><h3><small>Fase 1 · Advento</small>Lançamento</h3><p>Site no ar, contrato publicado, liquidez inicial e os primeiros memes na timeline.</p></div>
+      <div class="step card rv"><h3><small>Fase 2 · Véspera</small>Comunidade</h3><p>Concursos de memes, sorteios natalinos e parcerias com outras comunidades.</p></div>
+      <div class="step card rv"><h3><small>Fase 3 · Natal</small>A grande ceia</h3><p>Evento especial de Natal, listagens em agregadores e presentes para os holders.</p></div>
+      <div class="step card rv"><h3><small>Fase 4 · Ano novo</small>Além da neve</h3><p>O sapo não hiberna: novas temporadas, novas artes e o que a comunidade decidir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMUNIDADE ================= -->
+<section id="comunidade">
+  <div class="wrap">
+    <div class="join rv">
+      <span class="big">🐸🎄</span>
+      <h2>Entre para a <span>oficina</span></h2>
+      <p class="lead" style="margin-bottom:0">Os duendes estão online 24h. Chega mais, traz teu meme.</p>
+      <div class="social">
+        <a class="btn" data-link="telegram" href="#">✈️ Telegram</a>
+        <a class="btn green" data-link="twitter" href="#">𝕏 Twitter / X</a>
+        <a class="btn" data-link="chart" href="#">📈 Gráfico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="justify-content:center"><i>🎄</i> XMAS <b>PEPE</b></div>
+    <p><b>Aviso:</b> $XPEPE é um memecoin criado para entretenimento, sem valor intrínseco e sem expectativa de retorno financeiro. Criptoativos são voláteis e você pode perder todo o valor investido. Nada neste site é recomendação de investimento. Faça sua própria pesquisa.</p>
+    <p>© <span id="year"></span> XMAS PEPE · Feito com 💚 e ❄️</p>
+  </div>
+</footer>
+<div class="toast" id="toast">Contrato copiado! 🎁</div>
+
+<script>
+/* ========= CONFIGURAÇÃO: troque aqui pelos dados reais ========= */
+const CONFIG = {
+  contract: "COLE_AQUI_O_ENDERECO_DO_CONTRATO",
+  links: {
+    buy: "#comprar",      // link da DEX
+    chart: "#tokenomics", // link do gráfico
+    telegram: "#",
+    twitter: "#"
+  }
+};
+/* =============================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+$("#ca").textContent = CONFIG.contract;
+$("#year").textContent = new Date().getFullYear();
+$$("[data-link]").forEach(a => {
+  const url = CONFIG.links[a.dataset.link];
+  if (url) { a.href = url; if (/^https?:/.test(url)) { a.target = "_blank"; a.rel = "noopener"; } }
+});
+
+/* luzes e letreiros */
+$("#lights").innerHTML = "<span></span>".repeat(Math.max(12, Math.floor(innerWidth / 46)));
+const phrase = ["$XPEPE", "🎄", "HO HO HODL", "🐸", "FELIZ NATAL", "🎁", "XMAS PEPE", "❄️", "O SAPO DO NATAL", "🎅"];
+const row = phrase.map(p => `<span>${p}</span>`).join("");
+$("#t1").innerHTML = row.repeat(6);
+$("#t2").innerHTML = row.repeat(6);
+
+/* copiar contrato */
+const toast = $("#toast");
+$("#copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(CONFIG.contract); toast.textContent = "Contrato copiado! 🎁"; }
+  catch { toast.textContent = "Não foi possível copiar 😢"; }
+  toast.classList.add("on"); setTimeout(() => toast.classList.remove("on"), 1800);
+});
+
+/* contagem regressiva */
+function nextXmas() {
+  const n = new Date(); let x = new Date(n.getFullYear(), 11, 25);
+  if (n > new Date(n.getFullYear(), 11, 26)) x = new Date(n.getFullYear() + 1, 11, 25);
+  return x;
+}
+const target = nextXmas();
+function setNum(el, v) {
+  const s = String(v).padStart(2, "0");
+  if (el.textContent !== s) { el.textContent = s; el.classList.remove("tick"); void el.offsetWidth; el.classList.add("tick"); }
+}
+function tick() {
+  const d = Math.max(0, target - Date.now());
+  setNum($("#cd"), Math.floor(d / 864e5));
+  setNum($("#ch"), Math.floor(d / 36e5) % 24);
+  setNum($("#cm"), Math.floor(d / 6e4) % 60);
+  setNum($("#cs"), Math.floor(d / 1e3) % 60);
+}
+tick(); setInterval(tick, 1000);
+
+/* revelar ao rolar + contadores */
+function runCount(el) {
+  const end = +el.dataset.count, suf = el.dataset.suffix || "", compact = el.dataset.fmt === "compact";
+  const fmt = v => (compact ? new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(v)
+                            : Math.round(v).toLocaleString("pt-BR")) + suf;
+  if (reduce || !end) { el.textContent = fmt(end); return; }
+  const t0 = performance.now(), dur = 1600;
+  (function step(t) {
+    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(end * e);
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in");
+  $$("[data-count]", e.target).forEach(runCount);
+  io.unobserve(e.target);
+}), { threshold: .15 });
+$$(".rv").forEach(el => io.observe(el));
+
+/* cartões com inclinação 3D */
+if (!reduce && matchMedia("(hover:hover)").matches) {
+  $$(".tilt").forEach(c => {
+    c.addEventListener("mousemove", e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateY(-6px)`;
+    });
+    c.addEventListener("mouseleave", () => c.style.transform = "");
+  });
+  /* mascote segue o mouse */
+  const m = $("#mascot");
+  addEventListener("mousemove", e => {
+    const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+    m.style.transform = `translate(${x * 26}px, ${y * 18}px) rotate(${x * 8}deg)`;
+  });
+}
+
+/* explosão de emojis ao clicar */
+const EMO = ["❄️", "🎁", "🪙", "⭐", "🐸", "🎄", "🍬"];
+function burst(x, y, n = 12) {
+  if (reduce) return;
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement("span"), a = Math.random() * Math.PI * 2, d = 70 + Math.random() * 120;
+    s.className = "pop-emoji"; s.textContent = EMO[Math.random() * EMO.length | 0];
+    s.style.left = x - 14 + "px"; s.style.top = y - 14 + "px";
+    s.style.setProperty("--x", Math.cos(a) * d + "px");
+    s.style.setProperty("--y", Math.sin(a) * d + "px");
+    s.style.setProperty("--rot", (Math.random() * 360 - 180) + "deg");
+    document.body.appendChild(s); setTimeout(() => s.remove(), 1000);
+  }
+}
+$("#mascot").addEventListener("click", e => burst(e.clientX, e.clientY, 18));
+$$(".btn").forEach(b => b.addEventListener("click", e => burst(e.clientX, e.clientY, 8)));
+
+/* neve */
+(function snow() {
+  if (reduce) return;
+  const c = $("#snow"), x = c.getContext("2d");
+  let W, H, flakes = [], mx = 0;
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.min(160, Math.floor(W * H / 9000));
+    flakes = Array.from({ length: n }, () => make(true));
+  }
+  function make(any) {
+    const z = Math.random();
+    return { x: Math.random() * W, y: any ? Math.random() * H : -10, r: 1 + z * 3.2, v: .4 + z * 1.4, s: Math.random() * 6.28, o: .35 + z * .6 };
+  }
+  addEventListener("resize", size);
+  addEventListener("mousemove", e => mx = (e.clientX / W - .5) * 1.2);
+  size();
+  (function loop() {
+    x.clearRect(0, 0, W, H); x.fillStyle = "#fff";
+    for (const f of flakes) {
+      f.s += .012; f.y += f.v; f.x += Math.sin(f.s) * .6 + mx * f.v;
+      if (f.y > H + 10) Object.assign(f, make(false));
+      if (f.x > W + 10) f.x = -10; else if (f.x < -10) f.x = W + 10;
+      x.globalAlpha = f.o; x.beginPath(); x.arc(f.x, f.y, f.r, 0, 6.2832); x.fill();
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
